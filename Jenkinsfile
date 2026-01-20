@@ -4,6 +4,7 @@ pipeline {
     environment {
         IMAGE_NAME = "sujeetaws/html-app"
         IMAGE_TAG  = "latest"
+        DOCKER_CREDS = credentials('dockerhub-creds')
     }
 
     stages {
@@ -12,6 +13,15 @@ pipeline {
             steps {
                 git branch: 'main',
                     url: 'https://github.com/skr18/Tic-Tac-Toe'
+            }
+        }
+
+        stage('Docker Login') {
+            steps {
+                sh '''
+                  echo "$DOCKER_CREDS_PSW" | docker login \
+                  -u "$DOCKER_CREDS_USR" --password-stdin
+                '''
             }
         }
 
