@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "dockerhub_username/html-app"
+        IMAGE_NAME = "sujeetaws/html-app"
         IMAGE_TAG  = "latest"
     }
 
